@@ -1,6 +1,8 @@
 # This gitignore has been specially created by the WPILib team.
 # If you remove items from this file, intellisense might break.
 
+.wpilib
+
 ### C++ ###
 # Prerequisites
 *.d
@@ -104,6 +106,7 @@ Temporary Items
 .apdisk
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
