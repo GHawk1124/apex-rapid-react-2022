@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Constants.h"
 #include <frc2/command/SubsystemBase.h>
+#include <rev/CANSparkMax.h>
 
 class HangarSubsystem : public frc2::SubsystemBase {
 public:
@@ -11,6 +13,5 @@ public:
   void SimulationPeriodic() override;
 
 private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+  rev::CANSparkMax m_hangar;
 };

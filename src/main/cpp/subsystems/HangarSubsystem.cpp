@@ -1,6 +1,7 @@
 #include "subsystems/HangarSubsystem.h"
 
-HangarSubsystem::HangarSubsystem() {
+HangarSubsystem::HangarSubsystem()
+    : m_hangar{hang::kHangPort, hang::kHangMotorType} {
   // Implementation of subsystem constructor goes here.
 }
 

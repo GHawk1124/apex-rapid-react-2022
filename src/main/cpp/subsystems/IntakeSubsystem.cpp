@@ -1,6 +1,6 @@
 #include "subsystems/IntakeSubsystem.h"
 
-IntakeSubsystem::IntakeSubsystem() {
+IntakeSubsystem::IntakeSubsystem() : m_intake{intake::kIntakePort} {
   // Implementation of subsystem constructor goes here.
 }
 

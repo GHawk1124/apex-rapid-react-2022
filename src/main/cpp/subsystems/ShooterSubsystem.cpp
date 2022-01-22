@@ -1,6 +1,6 @@
 #include "subsystems/ShooterSubsystem.h"
 
-ShooterSubsystem::ShooterSubsystem() {
+ShooterSubsystem::ShooterSubsystem() : m_shooter{shooter::kShooterPort} {
   // Implementation of subsystem constructor goes here.
 }
 
