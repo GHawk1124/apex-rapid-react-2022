@@ -8,12 +8,12 @@
 #include <utility>
 
 DefaultDrive::DefaultDrive(DriveSubsystem* subsystem,
-                           std::function<double()> left,
-                           std::function<double()> right)
-    : m_drive{subsystem}, m_left{std::move(left)}, m_right{std::move(right)} {
+                           std::function<double()> fwd,
+                           std::function<double()> rot)
+    : m_drive{subsystem}, m_fwd{std::move(fwd)}, m_rot{std::move(rot)} {
   AddRequirements({subsystem});
 }
 
 void DefaultDrive::Execute() {
-  m_drive->ArcadeDrive(m_left(), m_right());
+  m_drive->ArcadeDrive(m_fwd(), m_rot());
 }

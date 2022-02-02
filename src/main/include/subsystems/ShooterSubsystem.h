@@ -18,5 +18,5 @@ class ShooterSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
  private:
-  // TalonFX m_shooter;
+  // WPI_TalonFX m_shooter;
 };

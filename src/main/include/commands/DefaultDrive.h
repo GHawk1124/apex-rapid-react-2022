@@ -12,13 +12,13 @@
 class DefaultDrive
     : public frc2::CommandHelper<frc2::CommandBase, DefaultDrive> {
  public:
-  DefaultDrive(DriveSubsystem* subsystem, std::function<double()> left,
-               std::function<double()> right);
+  DefaultDrive(DriveSubsystem* subsystem, std::function<double()> fwd,
+               std::function<double()> rot);
 
   void Execute() override;
 
  private:
   DriveSubsystem* m_drive;
-  std::function<double()> m_left;
-  std::function<double()> m_right;
+  std::function<double()> m_fwd;
+  std::function<double()> m_rot;
 };

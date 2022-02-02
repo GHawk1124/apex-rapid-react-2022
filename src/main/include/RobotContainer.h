@@ -5,7 +5,6 @@
 #pragma once
 
 #include <frc/Joystick.h>
-// #include <frc/XboxController.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/InstantCommand.h>
 
@@ -22,11 +21,8 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  // frc2::Command *GetAutonomousCommand();
-
  private:
   frc::Joystick m_controller{0};
-  // frc::XboxController m_controller{0};
   ShooterSubsystem m_shooter_subsystem;
   HangarSubsystem m_hangar_subsystem;
   IntakeSubsystem m_intake_subsystem;

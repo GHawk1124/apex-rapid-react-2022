@@ -5,12 +5,8 @@
 #pragma once
 
 #include <ctre/Phoenix.h>
-#include <frc/ADXRS450_Gyro.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/kinematics/DifferentialDriveOdometry.h>
-#include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc2/command/SubsystemBase.h>
-#include <units/voltage.h>
 
 #include "Constants.h"
 
@@ -34,11 +30,5 @@ class DriveSubsystem : public frc2::SubsystemBase {
   WPI_TalonFX m_RF;
   WPI_TalonFX m_RB;
 
-  // frc::MotorControllerGroup m_leftMotors{m_LF, m_LB};
-  // frc::MotorControllerGroup m_rightMotors{m_RF, m_RB};
   frc::DifferentialDrive m_DiffDrive{m_LF, m_RF};
-
-  // frc::ADXRS450_Gyro m_gyro;
-
-  // frc::DifferentialDriveOdometry m_odometry;
 };

@@ -18,5 +18,5 @@ class IntakeSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
  private:
-  // VictorSPX m_intake;
+  // WPI_VictorSPX m_intake;
 };
