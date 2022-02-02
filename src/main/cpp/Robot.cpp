@@ -35,7 +35,7 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::DisabledInit() {
-  frc2::CommandScheduler::GetInstance().Disable();
+  // frc2::CommandScheduler::GetInstance().Disable();
 }
 
 void Robot::DisabledPeriodic() {}
