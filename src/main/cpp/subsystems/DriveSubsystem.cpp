@@ -3,13 +3,17 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/DriveSubsystem.h"
+#include <iostream>
 
 DriveSubsystem::DriveSubsystem()
     : m_LF{constants::drive::kLeftFrontPort},
       m_LB{constants::drive::kLeftBackPort},
       m_RF{constants::drive::kRightFrontPort},
       m_RB{constants::drive::kRightBackPort} {
-  // m_rightMotors.SetInverted(true);
+  m_LB.Follow(m_LF);
+  m_RB.Follow(m_RF);
+  m_RF.SetInverted(true);
+  m_RB.SetInverted(ctre::phoenix::motorcontrol::InvertType::FollowMaster);
   ResetEncoders();
 }
 
@@ -27,19 +31,21 @@ void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right) {
 }
 
 void DriveSubsystem::TankDrive(double left, double right) {
-  m_LF.Set(ControlMode::PercentOutput, left * 12.0f);
-  m_LB.Set(ControlMode::PercentOutput, left * 12.0f);
-  m_RF.Set(ControlMode::PercentOutput, right * 12.0f);
-  m_RB.Set(ControlMode::PercentOutput, right * 12.0f);
+  
+  m_LF.Set(ControlMode::PercentOutput, left);
+  m_LB.Set(ControlMode::PercentOutput, left);
+  m_RF.Set(ControlMode::PercentOutput, right);
+  m_RB.Set(ControlMode::PercentOutput, right);
 }
 
 void DriveSubsystem::ArcadeDrive(double fwd, double rot) {
-  double leftSpeed = fwd - rot;
-  double rightSpeed = fwd + rot;
-  m_LF.Set(ControlMode::PercentOutput, leftSpeed);
-  m_LB.Set(ControlMode::PercentOutput, leftSpeed);
-  m_RF.Set(ControlMode::PercentOutput, rightSpeed);
-  m_RB.Set(ControlMode::PercentOutput, rightSpeed);
+  // double leftSpeed = fwd - rot;
+  // double rightSpeed = fwd + rot;
+  // m_LF.Set(ControlMode::PercentOutput, leftSpeed);
+  // m_LB.Set(ControlMode::PercentOutput, leftSpeed);
+  // m_RF.Set(ControlMode::PercentOutput, rightSpeed);
+  // m_RB.Set(ControlMode::PercentOutput, rightSpeed);
+  m_DiffDrive.ArcadeDrive(fwd, rot);
 }
 
 void DriveSubsystem::ResetEncoders() {}
