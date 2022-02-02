@@ -15,5 +15,5 @@ DefaultDrive::DefaultDrive(DriveSubsystem* subsystem,
 }
 
 void DefaultDrive::Execute() {
-  m_drive->TankDrive(m_left(), m_right());
+  m_drive->ArcadeDrive(m_left(), m_right());
 }

@@ -36,7 +36,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
   // frc::MotorControllerGroup m_leftMotors{m_LF, m_LB};
   // frc::MotorControllerGroup m_rightMotors{m_RF, m_RB};
-  // frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
+  frc::DifferentialDrive m_DiffDrive{m_LF, m_RF};
 
   // frc::ADXRS450_Gyro m_gyro;
 

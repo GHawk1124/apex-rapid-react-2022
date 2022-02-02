@@ -13,8 +13,8 @@ RobotContainer::RobotContainer()
   // Configure the button bindings
   ConfigureButtonBindings();
   m_drive.SetDefaultCommand(DefaultDrive(
-      &m_drive, [this] { return m_controller.GetLeftY(); },
-      [this] { return m_controller.GetRightY(); }));
+      &m_drive, [this] { return -m_controller.GetY(); },
+      [this] { return m_controller.GetZ(); }));
 }
 
 void RobotContainer::ConfigureButtonBindings() {
