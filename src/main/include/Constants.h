@@ -4,7 +4,10 @@
 
 #pragma once
 
+#include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <rev/CANSparkMax.h>
+#include <units/acceleration.h>
+#include <units/length.h>
 
 namespace constants {
 
@@ -14,9 +17,30 @@ constexpr int kLeftBackPort = 4;
 constexpr int kRightFrontPort = 1;
 constexpr int kRightBackPort = 3;
 constexpr int kFalcon500TicksPerRotation = 2048;
-constexpr double kGearRatio = 0;
+constexpr double kGearRatio = 10.71;
+constexpr auto kWheelDiameter = 6_in;
+constexpr auto kTrackWidth = 1_m;
 constexpr double kTicksPerMeter = kFalcon500TicksPerRotation;
+constexpr auto kDistancePerPulse = kWheelDiameter *
+                                   units::constants::detail::PI_VAL /
+                                   kGearRatio / kFalcon500TicksPerRotation;
+constexpr auto ks = 0.63559_V;
+constexpr auto kv = 2.4726 * 1_V * 1_s / 1_m;
+constexpr auto ka = 0.13818 * 1_V * 1_s * 1_s / 1_m;
+constexpr double kPDriveVel = 8.5;
+constexpr auto kTrackwidth = 0.69_m;
+extern const frc::DifferentialDriveKinematics kDriveKinematics;
+constexpr auto kMaxSpeed = 3_mps;
+constexpr auto kMaxAcceleration = 3_mps_sq;
+constexpr auto kMaxVoltage = 10_V;
 }  // namespace drive
+
+namespace Auto {
+constexpr auto kMaxSpeed = 3_mps;
+constexpr auto kMaxAcceleration = 3_mps_sq;
+constexpr auto kRamseteB = 2.0 * 1_rad * 1_rad / (1_m * 1_m);
+constexpr auto kRamseteZeta = 0.7 / 1_rad;
+}  // namespace Auto
 
 namespace intake {
 constexpr int kIntakePort = 4;

@@ -10,17 +10,35 @@ DriveSubsystem::DriveSubsystem()
     : m_LF{constants::drive::kLeftFrontPort},
       m_LB{constants::drive::kLeftBackPort},
       m_RF{constants::drive::kRightFrontPort},
-      m_RB{constants::drive::kRightBackPort} {
+      m_RB{constants::drive::kRightBackPort},
+      m_odometry{m_gyro.GetAngle()} {
   m_LB.Follow(m_LF);
   m_RB.Follow(m_RF);
   m_RF.SetInverted(true);
   m_RB.SetInverted(ctre::phoenix::motorcontrol::InvertType::FollowMaster);
+  m_gyro.Calibrate();
   ResetEncoders();
 }
 
-void DriveSubsystem::Periodic() {}
+void DriveSubsystem::Periodic() {
+  frc::SmartDashboard::PutNumber("Gyro Angle X", m_gyro.GetGyroAngleX().value());
+  frc::SmartDashboard::PutNumber("Gyro Angle Y", m_gyro.GetGyroAngleY().value());
+  frc::SmartDashboard::PutNumber("Gyro Angle Z", m_gyro.GetGyroAngleZ().value());
+  m_odometry.Update(
+      m_gyro.GetAngle(),
+      units::meter_t(
+          m_LF.GetSelectedSensorPosition() *
+          units::meter_t(constants::drive::kDistancePerPulse).value()),
+      units::meter_t(
+          m_RF.GetSelectedSensorPosition() *
+          units::meter_t(constants::drive::kDistancePerPulse).value()));
+}
 
-void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right) {}
+void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right) {
+  m_LF.SetVoltage(left);
+  m_RF.SetVoltage(right);
+  m_DiffDrive.Feed();
+}
 
 void DriveSubsystem::TankDrive(double left, double right) {}
 
@@ -28,4 +46,31 @@ void DriveSubsystem::ArcadeDrive(double fwd, double rot) {
   m_DiffDrive.ArcadeDrive(fwd, rot);
 }
 
-void DriveSubsystem::ResetEncoders() {}
+frc::DifferentialDriveWheelSpeeds DriveSubsystem::GetWheelSpeeds() {
+  return {units::meters_per_second_t(
+              m_LF.GetSelectedSensorVelocity() *
+              units::meter_t(constants::drive::kDistancePerPulse).value()),
+          units::meters_per_second_t(
+              m_RF.GetSelectedSensorVelocity() *
+              units::meter_t(constants::drive::kDistancePerPulse).value())};
+}
+
+units::degree_t DriveSubsystem::GetHeading() const {
+  return m_gyro.GetAngle();
+}
+
+frc::Pose2d DriveSubsystem::GetPose() {
+  return m_odometry.GetPose();
+}
+
+void DriveSubsystem::ResetEncoders() {
+  m_RF.SetSelectedSensorPosition(0);
+  m_RB.SetSelectedSensorPosition(0);
+  m_LF.SetSelectedSensorPosition(0);
+  m_LB.SetSelectedSensorPosition(0);
+}
+
+void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
+  ResetEncoders();
+  m_odometry.ResetPosition(pose, m_gyro.GetAngle());
+}

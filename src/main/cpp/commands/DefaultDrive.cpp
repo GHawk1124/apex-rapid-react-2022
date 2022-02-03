@@ -4,7 +4,6 @@
 
 #include "commands/DefaultDrive.h"
 
-#include <iostream>
 #include <utility>
 
 DefaultDrive::DefaultDrive(DriveSubsystem* subsystem,
