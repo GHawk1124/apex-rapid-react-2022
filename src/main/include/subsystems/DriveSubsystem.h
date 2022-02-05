@@ -5,7 +5,7 @@
 #pragma once
 
 #include <ctre/Phoenix.h>
-#include <frc/ADIS16448_IMU.h>
+#include <frc/ADXRS450_Gyro.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/geometry/Rotation2d.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
@@ -46,7 +46,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
   frc::DifferentialDrive m_DiffDrive{m_LF, m_RF};
 
-  frc::ADIS16448_IMU m_gyro;
+  frc::ADXRS450_Gyro m_gyro;
 
   frc::DifferentialDriveOdometry m_odometry;
 };

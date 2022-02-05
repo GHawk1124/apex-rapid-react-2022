@@ -11,7 +11,7 @@ DriveSubsystem::DriveSubsystem()
       m_LB{constants::drive::kLeftBackPort},
       m_RF{constants::drive::kRightFrontPort},
       m_RB{constants::drive::kRightBackPort},
-      m_odometry{m_gyro.GetAngle()} {
+      m_odometry{m_gyro.GetRotation2d()} {
   m_LB.Follow(m_LF);
   m_RB.Follow(m_RF);
   m_RF.SetInverted(true);
@@ -21,11 +21,11 @@ DriveSubsystem::DriveSubsystem()
 }
 
 void DriveSubsystem::Periodic() {
-  frc::SmartDashboard::PutNumber("Gyro Angle X", m_gyro.GetGyroAngleX().value());
-  frc::SmartDashboard::PutNumber("Gyro Angle Y", m_gyro.GetGyroAngleY().value());
-  frc::SmartDashboard::PutNumber("Gyro Angle Z", m_gyro.GetGyroAngleZ().value());
+  frc::SmartDashboard::PutNumber("Gyro Angle X", m_gyro.GetAngle());
+  frc::SmartDashboard::PutNumber("Gyro Angle Y", m_gyro.GetAngle());
+  frc::SmartDashboard::PutNumber("Gyro Angle Z", m_gyro.GetAngle());
   m_odometry.Update(
-      m_gyro.GetAngle(),
+      m_gyro.GetRotation2d(),
       units::meter_t(
           m_LF.GetSelectedSensorPosition() *
           units::meter_t(constants::drive::kDistancePerPulse).value()),
@@ -56,7 +56,7 @@ frc::DifferentialDriveWheelSpeeds DriveSubsystem::GetWheelSpeeds() {
 }
 
 units::degree_t DriveSubsystem::GetHeading() const {
-  return m_gyro.GetAngle();
+  return m_gyro.GetRotation2d().Degrees();
 }
 
 frc::Pose2d DriveSubsystem::GetPose() {
@@ -72,5 +72,5 @@ void DriveSubsystem::ResetEncoders() {
 
 void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
   ResetEncoders();
-  m_odometry.ResetPosition(pose, m_gyro.GetAngle());
+  m_odometry.ResetPosition(pose, m_gyro.GetRotation2d());
 }
