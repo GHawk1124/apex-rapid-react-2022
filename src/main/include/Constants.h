@@ -19,7 +19,7 @@ constexpr int kRightBackPort = 3;
 constexpr int kFalcon500TicksPerRotation = 2048;
 constexpr double kGearRatio = 10.71;
 constexpr auto kWheelDiameter = 6_in;
-constexpr auto kTrackWidth = 1_m;
+constexpr auto kTrackWidth = 0.94297_m;
 constexpr double kTicksPerMeter = kFalcon500TicksPerRotation;
 constexpr auto kDistancePerPulse = kWheelDiameter *
                                    units::constants::detail::PI_VAL /
@@ -28,7 +28,6 @@ constexpr auto ks = 0.64768_V;
 constexpr auto kv = 2.5441 * 1_V * 1_s / 1_m;
 constexpr auto ka = 0.1141 * 1_V * 1_s * 1_s / 1_m;
 constexpr double kPDriveVel = 0.000075;
-constexpr auto kTrackwidth = 0.94297_m;
 extern const frc::DifferentialDriveKinematics kDriveKinematics;
 constexpr auto kMaxSpeed = 3_mps;
 constexpr auto kMaxAcceleration = 3_mps_sq;

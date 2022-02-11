@@ -10,9 +10,9 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
-#include <frc2/command/SubsystemBase.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/SubsystemBase.h>
 
 #include "Constants.h"
 

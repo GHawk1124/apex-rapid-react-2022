@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <frc/Filesystem.h>
 #include <frc/Joystick.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/RamseteController.h>
@@ -11,11 +12,13 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/trajectory/Trajectory.h>
 #include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc/trajectory/TrajectoryUtil.h>
 #include <frc/trajectory/constraint/DifferentialDriveVoltageConstraint.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/RamseteCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <wpi/fs.h>
 
 #include "commands/DefaultDrive.h"
 #include "commands/HangCommand.h"
@@ -42,6 +45,8 @@ class RobotContainer {
   ShootCommand m_shootCommand;
   HangCommand m_hangCommand;
   IntakeCommand m_intakeCommand;
+
+  frc::Trajectory m_trajectory;
 
   frc::SendableChooser<frc2::Command*> m_chooser;
 
