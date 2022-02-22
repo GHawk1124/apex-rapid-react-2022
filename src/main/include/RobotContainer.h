@@ -18,6 +18,7 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/RamseteCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/button/JoystickButton.h>
 #include <wpi/fs.h>
 
 #include "commands/DefaultDrive.h"

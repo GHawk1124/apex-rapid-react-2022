@@ -19,6 +19,8 @@ class IntakeCommand
    */
   explicit IntakeCommand(IntakeSubsystem* subsystem);
 
+  void Execute() override;
+
  private:
   IntakeSubsystem* m_subsystem;
 };

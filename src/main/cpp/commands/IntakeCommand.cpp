@@ -5,4 +5,10 @@
 #include "commands/IntakeCommand.h"
 
 IntakeCommand::IntakeCommand(IntakeSubsystem* subsystem)
-    : m_subsystem{subsystem} {}
+    : m_subsystem{subsystem} {
+  AddRequirements({subsystem});
+}
+
+void IntakeCommand::Execute() {
+  m_subsystem->toggleSolonoid();
+}

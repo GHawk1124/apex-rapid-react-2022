@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <frc/Compressor.h>
+#include <frc/DoubleSolenoid.h>
 #include <frc2/command/SubsystemBase.h>
 
 #include "Constants.h"
@@ -13,10 +15,16 @@ class IntakeSubsystem : public frc2::SubsystemBase {
  public:
   IntakeSubsystem();
 
+  void toggleSolonoid();
+
   void Periodic() override;
 
   void SimulationPeriodic() override;
 
  private:
   // WPI_VictorSPX m_intake;
+  frc::Compressor pcmCompressor;
+  frc::DoubleSolenoid IntakeSolenoidPCM;
+
+  bool solonoid = false;
 };

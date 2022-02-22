@@ -43,6 +43,7 @@ constexpr auto kRamseteZeta = 0.7 / 1_rad;
 
 namespace intake {
 constexpr int kIntakePort = 4;
+constexpr int kPcmPort = 6;
 }  // namespace intake
 
 namespace shooter {

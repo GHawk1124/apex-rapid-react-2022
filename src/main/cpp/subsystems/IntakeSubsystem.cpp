@@ -4,8 +4,17 @@
 
 #include "subsystems/IntakeSubsystem.h"
 
-IntakeSubsystem::IntakeSubsystem() {
+IntakeSubsystem::IntakeSubsystem()
+    : pcmCompressor{constants::intake::kPcmPort,
+                    frc::PneumaticsModuleType::CTREPCM},
+      IntakeSolenoidPCM{frc::PneumaticsModuleType::CTREPCM, 1, 2} {
   // Implementation of subsystem constructor goes here.
+  pcmCompressor.EnableDigital();
+  IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kReverse);
+}
+
+void IntakeSubsystem::toggleSolonoid() {
+  IntakeSolenoidPCM.Toggle();
 }
 
 void IntakeSubsystem::Periodic() {
