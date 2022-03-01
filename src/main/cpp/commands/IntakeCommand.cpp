@@ -12,3 +12,7 @@ IntakeCommand::IntakeCommand(IntakeSubsystem* subsystem)
 void IntakeCommand::Execute() {
   m_subsystem->toggleSolonoid();
 }
+
+bool IntakeCommand::IsFinished() {
+    return true;
+}

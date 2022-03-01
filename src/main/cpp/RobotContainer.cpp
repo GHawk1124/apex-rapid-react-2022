@@ -24,7 +24,7 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  frc2::JoystickButton(&m_controller, 1).WhenPressed(m_intakeCommand, 1);
+  frc2::JoystickButton(&m_controller, 1).WhenHeld(m_intakeCommand, 1);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

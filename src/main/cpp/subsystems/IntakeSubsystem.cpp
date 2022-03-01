@@ -10,11 +10,11 @@ IntakeSubsystem::IntakeSubsystem()
       IntakeSolenoidPCM{frc::PneumaticsModuleType::CTREPCM, 1, 2} {
   // Implementation of subsystem constructor goes here.
   pcmCompressor.EnableDigital();
-  IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kReverse);
+  IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
 }
 
 void IntakeSubsystem::toggleSolonoid() {
-  IntakeSolenoidPCM.Toggle();
+    IntakeSolenoidPCM.Toggle();
 }
 
 void IntakeSubsystem::Periodic() {

@@ -20,6 +20,7 @@ class IntakeCommand
   explicit IntakeCommand(IntakeSubsystem* subsystem);
 
   void Execute() override;
+  bool IsFinished() override;
 
  private:
   IntakeSubsystem* m_subsystem;
