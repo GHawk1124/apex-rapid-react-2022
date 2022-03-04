@@ -2,15 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/ShootCommand.h"
+#include "commands/StopShootCommand.h"
 
-ShootCommand::ShootCommand(ShooterSubsystem* subsystem)
+StopShootCommand::StopShootCommand(ShooterSubsystem* subsystem)
     : m_subsystem{subsystem} {}
 
-void ShootCommand::Execute() {
-    m_subsystem->startShoot();
+void StopShootCommand::Execute() {
+    m_subsystem->stopShoot();
 }
 
-bool ShootCommand::IsFinished() {
+bool StopShootCommand::IsFinished() {
     return true;
 }

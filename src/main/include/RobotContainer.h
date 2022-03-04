@@ -22,11 +22,11 @@
 #include <wpi/fs.h>
 
 #include "commands/DefaultDrive.h"
-#include "commands/HangCommand.h"
-#include "commands/IntakeCommand.h"
+#include "commands/IntakePneumaticCommand.h"
+#include "commands/IntakeMotorCommand.h"
 #include "commands/ShootCommand.h"
+#include "commands/StopShootCommand.h"
 #include "subsystems/DriveSubsystem.h"
-#include "subsystems/HangarSubsystem.h"
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/ShooterSubsystem.h"
 
@@ -39,13 +39,13 @@ class RobotContainer {
  private:
   frc::Joystick m_controller{0};
   ShooterSubsystem m_shooter;
-  HangarSubsystem m_hangar;
   IntakeSubsystem m_intake;
   DriveSubsystem m_drive;
 
   ShootCommand m_shootCommand;
-  HangCommand m_hangCommand;
-  IntakeCommand m_intakeCommand;
+  StopShootCommand m_stopShootCommand;
+  IntakePneumaticCommand m_intakePneumaticCommand;
+  IntakeMotorCommand m_intakeMotorCommand;
 
   frc::Trajectory m_trajectory;
 

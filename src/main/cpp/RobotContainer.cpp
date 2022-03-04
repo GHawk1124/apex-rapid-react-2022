@@ -6,8 +6,9 @@
 
 RobotContainer::RobotContainer()
     : m_shootCommand(&m_shooter),
-      m_hangCommand(&m_hangar),
-      m_intakeCommand(&m_intake) {
+      m_stopShootCommand(&m_shooter),
+      m_intakePneumaticCommand(&m_intake),
+      m_intakeMotorCommand(&m_intake) {
   // Initialize all of your commands and subsystems here
 
   fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
@@ -24,7 +25,10 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  frc2::JoystickButton(&m_controller, 1).WhenHeld(m_intakeCommand, 1);
+  frc2::JoystickButton(&m_controller, 7).WhenHeld(m_intakePneumaticCommand, 1);
+  frc2::JoystickButton(&m_controller, 2).WhenHeld(m_intakeMotorCommand, 1);
+  frc2::JoystickButton(&m_controller, 1).WhenHeld(m_shootCommand, 1);
+  frc2::JoystickButton(&m_controller, 1).WhenReleased(m_stopShootCommand, 1);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

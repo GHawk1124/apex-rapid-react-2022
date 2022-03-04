@@ -7,17 +7,21 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/HangarSubsystem.h"
+#include "subsystems/ShooterSubsystem.h"
 
-class HangCommand : public frc2::CommandHelper<frc2::CommandBase, HangCommand> {
+class StopShootCommand
+    : public frc2::CommandHelper<frc2::CommandBase, StopShootCommand> {
  public:
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit HangCommand(HangarSubsystem* subsystem);
+  explicit StopShootCommand(ShooterSubsystem* subsystem);
+
+  void Execute() override;
+  bool IsFinished() override;
 
  private:
-  HangarSubsystem* m_subsystem;
+  ShooterSubsystem* m_subsystem;
 };

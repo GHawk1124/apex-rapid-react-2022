@@ -9,15 +9,15 @@
 
 #include "subsystems/IntakeSubsystem.h"
 
-class IntakeCommand
-    : public frc2::CommandHelper<frc2::CommandBase, IntakeCommand> {
+class IntakeMotorCommand
+    : public frc2::CommandHelper<frc2::CommandBase, IntakeMotorCommand> {
  public:
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit IntakeCommand(IntakeSubsystem* subsystem);
+  explicit IntakeMotorCommand(IntakeSubsystem* subsystem);
 
   void Execute() override;
   bool IsFinished() override;

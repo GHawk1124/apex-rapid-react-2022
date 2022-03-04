@@ -7,15 +7,17 @@
 #include <frc/Compressor.h>
 #include <frc/DoubleSolenoid.h>
 #include <frc2/command/SubsystemBase.h>
+#include <rev/CANSparkMax.h>
 
 #include "Constants.h"
-#include "ctre/Phoenix.h"
 
 class IntakeSubsystem : public frc2::SubsystemBase {
  public:
   IntakeSubsystem();
 
-  void toggleSolonoid();
+  void toggleSolenoid();
+
+  void toggleMotor();
 
   void Periodic() override;
 
@@ -25,6 +27,8 @@ class IntakeSubsystem : public frc2::SubsystemBase {
   // WPI_VictorSPX m_intake;
   frc::Compressor pcmCompressor;
   frc::DoubleSolenoid IntakeSolenoidPCM;
+  rev::CANSparkMax motor;
 
-  bool solonoid = false;
+  bool intakeOut = false;
+  bool motorOn = false;
 };

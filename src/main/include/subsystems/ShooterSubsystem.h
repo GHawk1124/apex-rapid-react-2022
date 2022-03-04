@@ -13,10 +13,15 @@ class ShooterSubsystem : public frc2::SubsystemBase {
  public:
   ShooterSubsystem();
 
+  void startShoot();
+
+  void stopShoot();
+
   void Periodic() override;
 
   void SimulationPeriodic() override;
 
  private:
-  // WPI_TalonFX m_shooter;
+  rev::CANSparkMax leftMotor;
+  rev::CANSparkMax rightMotor;
 };

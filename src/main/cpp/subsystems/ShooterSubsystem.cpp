@@ -3,9 +3,22 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/ShooterSubsystem.h"
+#include "Constants.h"
 
-ShooterSubsystem::ShooterSubsystem() {
+#include <rev/CANSparkMax.h>
+
+ShooterSubsystem::ShooterSubsystem() : leftMotor{constants::shooter::kShooterLeftPort, rev::CANSparkMax::MotorType::kBrushless},
+ rightMotor{constants::shooter::kShooterRightPort, rev::CANSparkMax::MotorType::kBrushless} {
   // Implementation of subsystem constructor goes here.
+  rightMotor.Follow(leftMotor);
+}
+
+void ShooterSubsystem::startShoot() {
+    leftMotor.Set(1.0);
+}
+
+void ShooterSubsystem::stopShoot() {
+    leftMotor.Set(0.0);
 }
 
 void ShooterSubsystem::Periodic() {

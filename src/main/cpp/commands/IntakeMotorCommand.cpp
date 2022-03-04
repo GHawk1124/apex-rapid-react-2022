@@ -2,17 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/IntakeCommand.h"
+#include "commands/IntakeMotorCommand.h"
 
-IntakeCommand::IntakeCommand(IntakeSubsystem* subsystem)
+IntakeMotorCommand::IntakeMotorCommand(IntakeSubsystem* subsystem)
     : m_subsystem{subsystem} {
   AddRequirements({subsystem});
 }
 
-void IntakeCommand::Execute() {
-  m_subsystem->toggleSolonoid();
+void IntakeMotorCommand::Execute() {
+  m_subsystem->toggleMotor();
 }
 
-bool IntakeCommand::IsFinished() {
+bool IntakeMotorCommand::IsFinished() {
     return true;
 }

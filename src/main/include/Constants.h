@@ -42,17 +42,13 @@ constexpr auto kRamseteZeta = 0.7 / 1_rad;
 }  // namespace Auto
 
 namespace intake {
-constexpr int kIntakePort = 4;
+constexpr int kIntakePort = 5;
 constexpr int kPcmPort = 0;
 }  // namespace intake
 
 namespace shooter {
-constexpr int kShooterPort = 5;
+constexpr int kShooterLeftPort = 6;
+constexpr int kShooterRightPort = 7;
 }  // namespace shooter
-
-namespace hang {
-constexpr int kHangPort = 6;
-constexpr auto kHangMotorType = rev::CANSparkMaxLowLevel::MotorType::kBrushless;
-}  // namespace hang
 
 }  // namespace constants

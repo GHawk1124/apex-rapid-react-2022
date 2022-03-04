@@ -7,21 +7,21 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/ShooterSubsystem.h"
+#include "subsystems/IntakeSubsystem.h"
 
-class ShootCommand
-    : public frc2::CommandHelper<frc2::CommandBase, ShootCommand> {
+class IntakePneumaticCommand
+    : public frc2::CommandHelper<frc2::CommandBase, IntakePneumaticCommand> {
  public:
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit ShootCommand(ShooterSubsystem* subsystem);
+  explicit IntakePneumaticCommand(IntakeSubsystem* subsystem);
 
   void Execute() override;
   bool IsFinished() override;
 
  private:
-  ShooterSubsystem* m_subsystem;
+  IntakeSubsystem* m_subsystem;
 };
