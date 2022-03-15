@@ -12,11 +12,6 @@
 class IntakeMotorCommand
     : public frc2::CommandHelper<frc2::CommandBase, IntakeMotorCommand> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
   explicit IntakeMotorCommand(IntakeSubsystem* subsystem);
 
   void Execute() override;

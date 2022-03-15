@@ -24,10 +24,9 @@ class IntakeSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
  private:
-  // WPI_VictorSPX m_intake;
   frc::Compressor pcmCompressor;
   frc::DoubleSolenoid IntakeSolenoidPCM;
-  rev::CANSparkMax motor;
+  rev::CANSparkMax m_intake;
 
   bool intakeOut = false;
   bool motorOn = false;

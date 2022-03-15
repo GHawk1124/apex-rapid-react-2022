@@ -14,5 +14,5 @@ void IntakeMotorCommand::Execute() {
 }
 
 bool IntakeMotorCommand::IsFinished() {
-    return true;
+  return true;
 }

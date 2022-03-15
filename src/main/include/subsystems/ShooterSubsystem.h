@@ -22,6 +22,6 @@ class ShooterSubsystem : public frc2::SubsystemBase {
   void SimulationPeriodic() override;
 
  private:
-  rev::CANSparkMax leftMotor;
-  rev::CANSparkMax rightMotor;
+  rev::CANSparkMax m_shooter_left;
+  rev::CANSparkMax m_shooter_right;
 };

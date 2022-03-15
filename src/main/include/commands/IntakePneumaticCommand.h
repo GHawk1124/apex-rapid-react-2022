@@ -12,11 +12,6 @@
 class IntakePneumaticCommand
     : public frc2::CommandHelper<frc2::CommandBase, IntakePneumaticCommand> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
   explicit IntakePneumaticCommand(IntakeSubsystem* subsystem);
 
   void Execute() override;

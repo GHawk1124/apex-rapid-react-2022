@@ -8,9 +8,9 @@ ShootCommand::ShootCommand(ShooterSubsystem* subsystem)
     : m_subsystem{subsystem} {}
 
 void ShootCommand::Execute() {
-    m_subsystem->startShoot();
+  m_subsystem->startShoot();
 }
 
 bool ShootCommand::IsFinished() {
-    return true;
+  return true;
 }

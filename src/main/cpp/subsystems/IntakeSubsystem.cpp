@@ -3,38 +3,39 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/IntakeSubsystem.h"
+
 #include <frc/Timer.h>
 #include <units/time.h>
 
 IntakeSubsystem::IntakeSubsystem()
     : pcmCompressor{constants::intake::kPcmPort,
                     frc::PneumaticsModuleType::CTREPCM},
-      IntakeSolenoidPCM{frc::PneumaticsModuleType::CTREPCM, 1, 2}, 
-      motor{constants::intake::kIntakePort, rev::CANSparkMax::MotorType::kBrushless}
-      {
+      IntakeSolenoidPCM{frc::PneumaticsModuleType::CTREPCM, 1, 2},
+      m_intake{constants::intake::kIntakePort,
+               rev::CANSparkMax::MotorType::kBrushless} {
   // Implementation of subsystem constructor goes here.
-//  pcmCompressor.EnableDigital();
-  //IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
+  //  pcmCompressor.EnableDigital();
+  // IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
 }
 
 void IntakeSubsystem::toggleSolenoid() {
-    if (intakeOut) {
-        // pull back in pistons with full force
-        IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
-    } else {
-        IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kReverse);
-        frc::Wait(0.1_s); // Wait for .1 seconds then turn off the air
-        IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kOff);
-    }
-    intakeOut = !intakeOut;
+  if (intakeOut) {
+    // pull back in pistons with full force
+    IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
+  } else {
+    IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kReverse);
+    frc::Wait(0.1_s);  // Wait for .1 seconds then turn off the air
+    IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kOff);
+  }
+  intakeOut = !intakeOut;
 }
 
 void IntakeSubsystem::toggleMotor() {
-    if (motorOn) {
-        motor.Set(0);
-    } else {
-        motor.Set(0.45);
-    }
+  if (motorOn) {
+    m_intake.Set(0.0f);
+  } else {
+    m_intake.Set(0.9f);
+  }
 }
 
 void IntakeSubsystem::Periodic() {

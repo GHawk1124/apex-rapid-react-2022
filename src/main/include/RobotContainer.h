@@ -22,8 +22,8 @@
 #include <wpi/fs.h>
 
 #include "commands/DefaultDrive.h"
-#include "commands/IntakePneumaticCommand.h"
 #include "commands/IntakeMotorCommand.h"
+#include "commands/IntakePneumaticCommand.h"
 #include "commands/ShootCommand.h"
 #include "commands/StopShootCommand.h"
 #include "subsystems/DriveSubsystem.h"

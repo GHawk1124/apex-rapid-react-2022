@@ -14,5 +14,5 @@ void IntakePneumaticCommand::Execute() {
 }
 
 bool IntakePneumaticCommand::IsFinished() {
-    return true;
+  return true;
 }

@@ -12,11 +12,6 @@
 class StopShootCommand
     : public frc2::CommandHelper<frc2::CommandBase, StopShootCommand> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
   explicit StopShootCommand(ShooterSubsystem* subsystem);
 
   void Execute() override;

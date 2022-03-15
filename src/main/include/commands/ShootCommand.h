@@ -12,11 +12,6 @@
 class ShootCommand
     : public frc2::CommandHelper<frc2::CommandBase, ShootCommand> {
  public:
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
   explicit ShootCommand(ShooterSubsystem* subsystem);
 
   void Execute() override;

@@ -8,9 +8,9 @@ StopShootCommand::StopShootCommand(ShooterSubsystem* subsystem)
     : m_subsystem{subsystem} {}
 
 void StopShootCommand::Execute() {
-    m_subsystem->stopShoot();
+  m_subsystem->stopShoot();
 }
 
 bool StopShootCommand::IsFinished() {
-    return true;
+  return true;
 }
