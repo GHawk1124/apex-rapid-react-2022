@@ -13,11 +13,11 @@ ShooterSubsystem::ShooterSubsystem()
                      rev::CANSparkMax::MotorType::kBrushless},
       m_shooter_right{constants::shooter::kShooterRightPort,
                       rev::CANSparkMax::MotorType::kBrushless} {
-  m_shooter_right.Follow(m_shooter_left);
+  m_shooter_right.Follow(m_shooter_left, true);
 }
 
 void ShooterSubsystem::startShoot() {
-  m_shooter_left.Set(0.9f);
+  m_shooter_left.Set(0.6f);
   // right follows...
 }
 

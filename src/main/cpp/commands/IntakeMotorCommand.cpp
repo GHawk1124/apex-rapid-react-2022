@@ -14,5 +14,6 @@ void IntakeMotorCommand::Execute() {
 }
 
 bool IntakeMotorCommand::IsFinished() {
+  m_subsystem->toggleMotor();
   return true;
 }
