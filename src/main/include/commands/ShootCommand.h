@@ -12,11 +12,13 @@
 class ShootCommand
     : public frc2::CommandHelper<frc2::CommandBase, ShootCommand> {
  public:
-  explicit ShootCommand(ShooterSubsystem* subsystem);
+  explicit ShootCommand(ShooterSubsystem* subsystem,
+                        std::function<double()> throttle);
 
   void Execute() override;
   bool IsFinished() override;
 
  private:
   ShooterSubsystem* m_subsystem;
+  std::function<double()> m_throttle;
 };

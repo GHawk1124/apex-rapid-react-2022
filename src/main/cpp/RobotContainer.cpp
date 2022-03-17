@@ -5,16 +5,16 @@
 #include "RobotContainer.h"
 
 RobotContainer::RobotContainer()
-    : m_shootCommand(&m_shooter),
+    : m_shootCommand(&m_shooter, [this] { return m_controller.GetThrottle(); }),
       m_stopShootCommand(&m_shooter),
       m_intakePneumaticCommand(&m_intake),
       m_intakeMotorCommand(&m_intake) {
   // Initialize all of your commands and subsystems here
 
-  fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
-  deployDirectory = deployDirectory / "output" / "curve.wpilib.json";
-  m_trajectory =
-      frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
+  // fs::path deployDirectory = frc::filesystem::GetDeployDirectory();
+  // deployDirectory = deployDirectory / "output" / "curve.wpilib.json";
+  // m_trajectory =
+  //     frc::TrajectoryUtil::FromPathweaverJson(deployDirectory.string());
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -25,7 +25,8 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
-  frc2::JoystickButton(&m_controller, 7).WhenPressed(m_intakePneumaticCommand, 1);
+  frc2::JoystickButton(&m_controller, 7)
+      .WhenPressed(m_intakePneumaticCommand, 1);
   frc2::JoystickButton(&m_controller, 2).WhenPressed(m_intakeMotorCommand, 1);
   frc2::JoystickButton(&m_controller, 1).WhenHeld(m_shootCommand, 1);
   frc2::JoystickButton(&m_controller, 1).WhenReleased(m_stopShootCommand, 1);
@@ -51,14 +52,13 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // Pass through these two interior waypoints, making an 's' curve path
   // End 3 meters straight ahead of where we started, facing forward
   // Pass the config
-  /*   auto trajectory = frc::TrajectoryGenerator::GenerateTrajectory(
-        frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
-        {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
-        frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
-        config); */
+  auto trajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
+      {frc::Translation2d(2_m, 0_m)},
+      frc::Pose2d(2_m, 0_m, frc::Rotation2d(0_deg)), config);
 
   frc2::RamseteCommand ramseteCommand(
-      m_trajectory, [this]() { return m_drive.GetPose(); },
+      trajectory, [this]() { return m_drive.GetPose(); },
       frc::RamseteController(constants::Auto::kRamseteB,
                              constants::Auto::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
@@ -71,7 +71,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       {&m_drive});
 
   // Reset odometry to the starting pose of the trajectory.
-  m_drive.ResetOdometry(m_trajectory.InitialPose());
+  m_drive.ResetOdometry(trajectory.InitialPose());
 
   // no auto
   return new frc2::SequentialCommandGroup(

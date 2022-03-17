@@ -13,7 +13,7 @@ class ShooterSubsystem : public frc2::SubsystemBase {
  public:
   ShooterSubsystem();
 
-  void startShoot();
+  void startShoot(double power);
 
   void stopShoot();
 

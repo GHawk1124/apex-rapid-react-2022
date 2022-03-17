@@ -9,11 +9,10 @@ IntakeMotorCommand::IntakeMotorCommand(IntakeSubsystem* subsystem)
   AddRequirements({subsystem});
 }
 
-void IntakeMotorCommand::Execute() {
+void IntakeMotorCommand::Initialize() {
   m_subsystem->toggleMotor();
 }
 
 bool IntakeMotorCommand::IsFinished() {
-  m_subsystem->toggleMotor();
   return true;
 }

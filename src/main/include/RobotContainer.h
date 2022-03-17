@@ -47,7 +47,7 @@ class RobotContainer {
   IntakePneumaticCommand m_intakePneumaticCommand;
   IntakeMotorCommand m_intakeMotorCommand;
 
-  frc::Trajectory m_trajectory;
+  // frc::Trajectory m_trajectory;
 
   frc::SendableChooser<frc2::Command*> m_chooser;
 

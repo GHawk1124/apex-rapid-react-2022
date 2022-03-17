@@ -14,7 +14,7 @@ class IntakeMotorCommand
  public:
   explicit IntakeMotorCommand(IntakeSubsystem* subsystem);
 
-  void Execute() override;
+  void Initialize() override;
   bool IsFinished() override;
 
  private:

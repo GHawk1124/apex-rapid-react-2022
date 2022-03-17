@@ -14,7 +14,7 @@ IntakeSubsystem::IntakeSubsystem()
       m_intake{constants::intake::kIntakePort,
                rev::CANSparkMax::MotorType::kBrushless} {
   // Implementation of subsystem constructor goes here.
-  //  pcmCompressor.EnableDigital();
+  // pcmCompressor.Disable();
   // IntakeSolenoidPCM.Set(frc::DoubleSolenoid::Value::kForward);
 }
 
@@ -31,10 +31,11 @@ void IntakeSubsystem::toggleSolenoid() {
 }
 
 void IntakeSubsystem::toggleMotor() {
+  motorOn = !motorOn;
   if (motorOn) {
-    m_intake.Set(0.0f);
-  } else {
     m_intake.Set(0.9f);
+  } else {
+    m_intake.Set(0.0f);
   }
 }
 

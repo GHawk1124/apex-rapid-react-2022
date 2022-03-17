@@ -4,11 +4,12 @@
 
 #include "commands/ShootCommand.h"
 
-ShootCommand::ShootCommand(ShooterSubsystem* subsystem)
-    : m_subsystem{subsystem} {}
+ShootCommand::ShootCommand(ShooterSubsystem* subsystem,
+                           std::function<double()> throttle)
+    : m_subsystem{subsystem}, m_throttle{std::move(throttle)} {}
 
 void ShootCommand::Execute() {
-  m_subsystem->startShoot();
+  m_subsystem->startShoot(m_throttle());
 }
 
 bool ShootCommand::IsFinished() {

@@ -16,8 +16,8 @@ ShooterSubsystem::ShooterSubsystem()
   m_shooter_right.Follow(m_shooter_left, true);
 }
 
-void ShooterSubsystem::startShoot() {
-  m_shooter_left.Set(0.6f);
+void ShooterSubsystem::startShoot(double power) {
+  m_shooter_left.Set(power);
   // right follows...
 }
 
